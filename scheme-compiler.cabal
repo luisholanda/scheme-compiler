@@ -1,0 +1,50 @@
+name:                scheme-compiler
+version:             0.1.0.0
+-- synopsis:
+-- description:
+license:             BSD3
+license-file:        LICENSE
+author:              Author name here
+maintainer:          example@example.com
+copyright:           2017 Author name here
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     SchemeCompiler.Parser
+                     , SchemeCompiler.Lisp
+                     , SchemeCompiler.Utils
+                     , SchemeCompiler.Shower
+                     , SchemeCompiler.Evaluator
+                     , SchemeCompiler.Prim
+                     , SchemeCompiler.Prim.Base
+                     , SchemeCompiler.Prim.IO
+                     , SchemeCompiler.Prim.String
+                     , SchemeCompiler.Prim.Bool
+                     , SchemeCompiler.Prim.Number
+                     , SchemeCompiler.REPL
+                     , SchemeCompiler.Env
+  build-depends:       base >= 4.7 && < 5
+                     , parsec
+                     , mtl
+  default-language:    Haskell2010
+
+executable scheme-compiler
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , scheme-compiler
+  default-language:    Haskell2010
+
+test-suite scheme-compiler-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base
+                     , scheme-compiler
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
